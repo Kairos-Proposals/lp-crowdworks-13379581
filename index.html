@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos ご提案 | 記事LP制作 スピード対応</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --navy:#10243E;
+    --navy-deep:#0A1826;
+    --navy-light:#1D3B63;
+    --amber:#F4A300;
+    --vermillion:#D64550;
+    --paper:#EDEFF2;
+    --paper-2:#DCE1E7;
+    --ink:#161B22;
+    --mist:#7E93A7;
+    --white:#FCFCFB;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.85;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Shippori Mincho', serif;
+  }
+
+  a{ text-decoration:none; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- HEADER ---------- */
+  .site-header{
+    position:absolute;
+    top:0; left:0; right:0;
+    z-index:10;
+    padding:28px 0;
+  }
+  .site-header .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .logo{
+    color:var(--white);
+    font-size:1.05rem;
+    letter-spacing:0.18em;
+    font-weight:700;
+  }
+  .logo span{ color:var(--amber); }
+  .header-tag{
+    color:var(--mist);
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(244,163,0,0.16), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(214,69,80,0.15), transparent 40%),
+      linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color:var(--white);
+    padding:150px 0 110px;
+    overflow:hidden;
+  }
+
+  .hero .wrap{
+    display:flex;
+    align-items:center;
+    gap:60px;
+    flex-wrap:wrap;
+  }
+
+  .hero-copy{ flex:1 1 420px; }
+
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 16px;
+    border:1px solid rgba(244,163,0,0.5);
+    border-radius:100px;
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+    color:var(--amber);
+    margin-bottom:28px;
+  }
+  .hero-badge::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--amber);
+    border-radius:50%;
+    display:inline-block;
+  }
+
+  .hero h1{
+    font-size:2.5rem;
+    font-weight:800;
+    line-height:1.55;
+    color:var(--white);
+    margin-bottom:26px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--amber);
+    position:relative;
+  }
+
+  .hero p.lead{
+    color:#C7D2DD;
+    font-size:0.98rem;
+    max-width:480px;
+    margin-bottom:34px;
+  }
+
+  .hero-meta{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .meta-pill{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
+    padding:10px 18px;
+    border-radius:10px;
+    font-size:0.8rem;
+    color:#DCE3EA;
+  }
+  .meta-pill b{
+    color:var(--amber);
+    font-family:'Shippori Mincho',serif;
+    font-size:0.95rem;
+  }
+
+  /* --- dial (stopwatch) visual --- */
+  .hero-visual{
+    flex:0 0 auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:300px;
+    height:300px;
+    position:relative;
+    margin:0 auto;
+  }
+  .dial-outer{
+    width:280px; height:280px;
+    border-radius:50%;
+    background:repeating-conic-gradient(
+      from 0deg,
+      var(--amber) 0deg 1.4deg,
+      transparent 1.4deg 30deg
+    );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 60px rgba(244,163,0,0.12);
+  }
+  .dial-inner{
+    width:224px; height:224px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--navy-light), var(--navy-deep) 75%);
+    border:1px solid rgba(255,255,255,0.08);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .dial-center-text{
+    text-align:center;
+    color:var(--white);
+    z-index:2;
+  }
+  .dial-center-text .num{
+    font-family:'Shippori Mincho',serif;
+    font-size:1.9rem;
+    font-weight:700;
+    color:var(--amber);
+    display:block;
+  }
+  .dial-center-text .cap{
+    font-size:0.65rem;
+    letter-spacing:0.12em;
+    color:#AEC0D1;
+  }
+  .needle{
+    position:absolute;
+    width:3px;
+    height:96px;
+    background:linear-gradient(to top, var(--vermillion), transparent);
+    top:16px; left:50%;
+    transform-origin:bottom center;
+    transform:translateX(-50%) rotate(0deg);
+    animation:spin 7s linear infinite;
+    border-radius:2px;
+  }
+  @keyframes spin{
+    from{ transform:translateX(-50%) rotate(0deg); }
+    to{ transform:translateX(-50%) rotate(360deg); }
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:96px 0; }
+  .eyebrow{
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    color:var(--vermillion);
+    font-weight:700;
+    margin-bottom:14px;
+    display:block;
+  }
+  .section-title{
+    font-size:1.9rem;
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:22px;
+  }
+
+  /* ---------- UNDERSTANDING ---------- */
+  .understand{
+    background:var(--paper);
+  }
+  .understand-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .understand-visual{
+    background:var(--white);
+    border-radius:18px;
+    padding:34px;
+    position:relative;
+    box-shadow:0 20px 40px rgba(16,36,62,0.08);
+  }
+  .stack-card{
+    background:var(--paper-2);
+    border-radius:12px;
+    padding:22px 24px;
+    position:relative;
+  }
+  .stack-card + .stack-card{
+    margin-top:-30px;
+    margin-left:24px;
+    background:var(--navy);
+    color:var(--white);
+    box-shadow:0 16px 30px rgba(16,36,62,0.25);
+  }
+  .stack-card .tag{
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    color:var(--vermillion);
+    margin-bottom:8px;
+    display:block;
+  }
+  .stack-card:nth-child(2) .tag{ color:var(--amber); }
+  .stack-card p{ font-size:0.88rem; }
+
+  .understand-text p{
+    color:#3A4A5A;
+    font-size:0.98rem;
+    margin-bottom:18px;
+  }
+  .understand-text strong{
+    color:var(--navy);
+    font-family:'Shippori Mincho',serif;
+  }
+
+  /* ---------- VALUE CARDS ---------- */
+  .values{
+    background:var(--navy);
+    color:var(--white);
+    position:relative;
+  }
+  .values::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 90% 0%, rgba(244,163,0,0.08), transparent 50%);
+    pointer-events:none;
+  }
+  .values .section-title{ color:var(--white); }
+  .values .eyebrow{ color:var(--amber); }
+
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+    margin-top:44px;
+  }
+  .value-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.09);
+    border-radius:16px;
+    padding:30px 24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .value-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:3px;
+    background:linear-gradient(90deg, var(--amber), var(--vermillion));
+  }
+  .icon-shape{
+    width:42px; height:42px;
+    border-radius:10px;
+    margin-bottom:18px;
+    position:relative;
+    background:rgba(244,163,0,0.12);
+  }
+  .icon-shape::after{
+    content:"";
+    position:absolute;
+    inset:11px;
+    border:2px solid var(--amber);
+    border-radius:50%;
+  }
+  .icon-shape.i2::after{
+    inset:9px 13px;
+    border:none;
+    border-top:2px solid var(--vermillion);
+    border-radius:0;
+    transform:rotate(45deg);
+  }
+  .icon-shape.i3::after{
+    inset:9px;
+    border-radius:0;
+    border:2px solid var(--amber);
+    transform:rotate(45deg);
+  }
+  .icon-shape.i4::after{
+    inset:12px;
+    border-radius:50%;
+    border:2px solid var(--vermillion);
+    box-shadow:8px 0 0 -2px var(--vermillion);
+  }
+
+  .value-card h3{
+    font-size:1.05rem;
+    margin-bottom:12px;
+    color:var(--white);
+    font-weight:700;
+  }
+  .value-card p{
+    font-size:0.85rem;
+    color:#B9C6D2;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{ background:var(--paper); }
+  .timeline{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    margin-top:56px;
+    position:relative;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    top:22px; left:0; right:0;
+    height:2px;
+    background:repeating-linear-gradient(to right, var(--mist) 0 8px, transparent 8px 16px);
+    z-index:0;
+  }
+  .step{
+    position:relative;
+    z-index:1;
+    padding:0 16px;
+  }
+  .step-num{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--navy);
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Shippori Mincho',serif;
+    font-weight:700;
+    margin-bottom:20px;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 2px var(--navy);
+  }
+  .step h3{
+    font-size:1rem;
+    color:var(--navy);
+    margin-bottom:10px;
+  }
+  .step p{
+    font-size:0.82rem;
+    color:#516274;
+  }
+  .step .when{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.72rem;
+    color:var(--vermillion);
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    background:linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light));
+    color:var(--white);
+    text-align:center;
+    padding:120px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .closing::before{
+    content:"";
+    position:absolute;
+    width:600px; height:600px;
+    border-radius:50%;
+    border:1px dashed rgba(244,163,0,0.2);
+    top:-260px; left:50%;
+    transform:translateX(-50%);
+  }
+  .closing .eyebrow{ color:var(--amber); justify-content:center; display:block; }
+  .closing h2{
+    font-size:2.1rem;
+    margin:18px 0 24px;
+    line-height:1.6;
+  }
+  .closing p{
+    color:#C7D2DD;
+    max-width:520px;
+    margin:0 auto 40px;
+    font-size:0.95rem;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--amber);
+    color:var(--navy-deep);
+    padding:18px 48px;
+    border-radius:100px;
+    font-weight:700;
+    letter-spacing:0.05em;
+    font-size:0.95rem;
+    transition:transform .25s ease, box-shadow .25s ease;
+    box-shadow:0 14px 30px rgba(244,163,0,0.25);
+  }
+  .cta-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 36px rgba(244,163,0,0.35);
+  }
+  .cta-sub{
+    margin-top:20px;
+    font-size:0.78rem;
+    color:var(--mist);
+  }
+
+  footer{
+    background:var(--navy-deep);
+    color:var(--mist);
+    text-align:center;
+    padding:26px 0;
+    font-size:0.75rem;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .understand-grid{ grid-template-columns:1fr; }
+    .value-grid{ grid-template-columns:repeat(2,1fr); }
+    .timeline{ grid-template-columns:1fr; gap:40px; }
+    .timeline::before{ display:none; }
+  }
+  @media (max-width:600px){
+    .hero{ padding:130px 0 80px; }
+    .hero h1{ font-size:1.8rem; }
+    .hero-visual{ width:220px; height:220px; }
+    .dial-outer{ width:200px; height:200px; }
+    .dial-inner{ width:160px; height:160px; }
+    .needle{ height:68px; }
+    .section-title{ font-size:1.5rem; }
+    .value-grid{ grid-template-columns:1fr; }
+    .closing h2{ font-size:1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="logo">KAIR<span>O</span>S</div>
+      <div class="header-tag">PROPOSAL FOR 26CW</div>
+    </div>
+  </header>
+
+  <!-- ---------------- HERO ---------------- -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="hero-badge">Kairos からのご提案</span>
+        <h1>その<em>「型」</em>に、<br>いちばん速い熱量を吹き込む。</h1>
+        <p class="lead">
+          既存の記事LPという設計図はすでにある。あとは、それをなぞるだけで終わらせず、
+          新しい商材の温度に合わせて言葉を組み直す速さと経験だけです。
+        </p>
+        <div class="hero-meta">
+          <div class="meta-pill">予算感 <b>¥11,000〜</b></div>
+          <div class="meta-pill">対応 <b>スピード納品</b></div>
+          <div class="meta-pill">関係 <b>継続依頼あり</b></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="dial-outer">
+          <div class="dial-inner">
+            <div class="needle"></div>
+            <div class="dial-center-text">
+              <span class="num">2CW</span>
+              <span class="cap">ARTICLE LP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- UNDERSTANDING ---------------- -->
+  <section class="understand">
+    <div class="wrap">
+      <span class="eyebrow">案件理解</span>
+      <h2 class="section-title">見本という設計図を、<br class="mobile-break">正確に、そして速く読み解く。</h2>
+
+      <div class="understand-grid">
+        <div class="understand-visual">
+          <div class="stack-card">
+            <span class="tag">EXISTING LP</span>
+            <p>デザイン・構成・テキストの流れが完成した参考記事LP。この"型"には、すでに成果を出した理由がある。</p>
+          </div>
+          <div class="stack-card">
+            <span class="tag">NEW PRODUCT</span>
+            <p>商材が変わっても、型の骨格は活かしたまま。言葉のトーンと訴求ポイントだけを新しく編み直す。</p>
+          </div>
+        </div>
+
+        <div class="understand-text">
+          <p>
+            <strong>「経験者限定・スピード重視」</strong>という条件から見えてくるのは、
+            単なる文章の代筆ではなく、既存LPの<strong>構成意図を正しく読み取り</strong>、
+            短時間で別商材に転用できる実務力への期待です。
+          </p>
+          <p>
+            さらに「継続依頼あり」という一文には、一度きりの外注ではなく、
+            <strong>安定して型を再現し続けてくれるパートナー</strong>を探しているという
+            意図が滲んでいます。Kairos はその前提を踏まえてご提案します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- VALUES ---------------- -->
+  <section class="values">
+    <div class="wrap">
+      <span class="eyebrow">Kairos が提供できる価値</span>
+      <h2 class="section-title">なぞるだけでは終わらせない、4つの実務力。</h2>
+
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="icon-shape"></div>
+          <h3>構成トレース力</h3>
+          <p>参考LPの見出し・流れ・訴求順序を要素分解し、新商材にそのまま転用できる骨格として抽出します。</p>
+        </div>
+        <div class="value-card">
+          <div class="icon-shape i2"></div>
+          <h3>スピード納品</h3>
+          <p>既存の型があるからこそ実現できる短納期。予算・期日を踏まえた無理のない速度で仕上げます。</p>
+        </div>
+        <div class="value-card">
+          <div class="icon-shape i3"></div>
+          <h3>商材別トーン調整</h3>
+          <p>同じ構成でも、商材ごとにターゲットの温度は違う。言葉選びとリズムを個別に最適化します。</p>
+        </div>
+        <div class="value-card">
+          <div class="icon-shape i4"></div>
+          <h3>継続対応の体制</h3>
+          <p>単発で終わらない前提でヒアリングを設計。次回以降のご依頼もスムーズに引き継げる体制を用意します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- PROCESS ---------------- -->
+  <section class="process">
+    <div class="wrap">
+      <span class="eyebrow">進め方</span>
+      <h2 class="section-title">見本共有から納品まで、最短ルートで。</h2>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>見本・素材共有</h3>
+          <p>参考記事LPと新商材の情報（商品概要・ターゲット・訴求軸）をご共有いただきます。</p>
+          <span class="when">Day 0</span>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>構成トレース</h3>
+          <p>見本の流れを分解し、新商材向けの構成案・見出し骨格を作成します。</p>
+          <span class="when">Day 1</span>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>本文ドラフト</h3>
+          <p>構成に沿って本文を執筆。トーン・熱量を商材に合わせて調整します。</p>
+          <span class="when">Day 1-2</span>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>納品・すり合わせ</h3>
+          <p>フィードバックを反映し納品。継続依頼を見据えたやり取りの型も共有します。</p>
+          <span class="when">Day 2-3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- CLOSING ---------------- -->
+  <section class="closing">
+    <div class="wrap">
+      <span class="eyebrow">NEXT ACTION</span>
+      <h2>まずは、参考にしたい記事LPを<br>見せてください。</h2>
+      <p>
+        既存の型を尊重しながら、新しい商材の熱量を最短距離で言葉にします。
+        継続的なパートナーとして、Kairos にお任せください。
+      </p>
+      <a href="#" class="cta-btn">Kairos に相談する</a>
+      <div class="cta-sub">Kairos ｜ Web制作・システム開発チーム</div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; Kairos — Proposal for 26CW / 記事LP制作案件
+  </footer>
+
+</body>
+</html>
